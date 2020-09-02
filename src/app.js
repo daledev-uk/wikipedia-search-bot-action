@@ -23,9 +23,13 @@ function getFlowVariable(key, request) {
 }
 
 async function getDataFromWiki(searchTerm) {
-  const wikiPage = await wiki().page(searchTerm);
-  const summary = await wikiPage.summary();
-  return summary;
+  try {
+    const wikiPage = await wiki().page(searchTerm);
+    const summary = await wikiPage.summary();
+    return summary;
+  } catch {
+    return "No information found for '" + searchTerm + "'";
+  }
 }
 
 /**
