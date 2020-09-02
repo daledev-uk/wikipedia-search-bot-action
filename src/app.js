@@ -3,10 +3,7 @@ const crypto = require("crypto");
 const wiki = require("wikijs").default;
 
 async function init(request) {
-  // Replace this with your own app logic
   const messages = [];
-  messages.push("You've hit the bot action! 😁");
-
   const searchTerm = getFlowVariable("searchTerm", request);
   const wikiData = await getDataFromWiki(searchTerm);
   messages.push(wikiData);
@@ -27,9 +24,7 @@ function getFlowVariable(key, request) {
 
 async function getDataFromWiki(searchTerm) {
   const wikiPage = await wiki().page(searchTerm);
-  console.log("wikiPage", wikiPage);
   const summary = await wikiPage.summary();
-  console.log("summary", summary);
   return summary;
 }
 
